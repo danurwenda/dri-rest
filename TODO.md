@@ -4,16 +4,11 @@ We have one and only one db to sync to, let's call it REFDB.
 DBs below are required :
 
     1. A collection containing latest snapshot of REFDB.(SNAPSHOT)
-    2. A database with collections (one for each stock) containing time-series 
-of every transaction {timestamp (indexed), price, volume} (TRANSAC)
-    3. A database with collections (one for each stock) containing time-series
-OHLC, each entry represents 1 minute range (MINUTES)
-    4. A database with collections (one for each stock) containing time-series
-OHLC, each entry represents 1 hour range (HOURS)
-    5. A database with collections (one for each stock) containing time-series
-OHLC, each entry represents 1 day range (DAYS)
-    6. A database with collections (one for each stock) containing time-series
-OHLC, each entry represents 1 month range (MONTHS)
+    2. A database with collections (one for each stock) containing time-series of every transaction {timestamp (indexed), price, volume} (TRANSAC)
+    3. A database with collections (one for each stock) containing time-series OHLC, each entry represents 1 minute range (MINUTES)
+    4. A database with collections (one for each stock) containing time-series OHLC, each entry represents 1 hour range (HOURS)
+    5. A database with collections (one for each stock) containing time-series OHLC, each entry represents 1 day range (DAYS)
+    6. A database with collections (one for each stock) containing time-series OHLC, each entry represents 1 month range (MONTHS)
 
 Actually DB no 3 to 6 can be calculated on-demand using data in TRANSAC, but it will consume
 too much processing time and resources. So we compute and store them beforehand instead.
