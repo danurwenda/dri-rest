@@ -1,30 +1,20 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-
-var morgan = require('morgan');
 var mongoose = require('mongoose');
 
 //use default promise
 mongoose.Promise = global.Promise;
 
-var passport = require('passport');
-var config = require('./config/database');
-
-var app = express();
-
 // db setup
+var config = require('./config/database');
 mongoose.connect(config.database);
 
-// API route
-var api = require('./routes/api');
 
+var app = express();
 // make it CORS-enabled
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -33,6 +23,7 @@ app.use(function(req, res, next) {
 });
 
 // init passport
+var passport = require('passport');
 app.use(passport.initialize());
 
 // view engine setup
@@ -48,9 +39,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res) {
-  res.send('Page under construction.');
+  res.send('DRI Terminal : Page under construction.');
 });
+
+// API route
+var api = require('./routes/api');
 app.use('/api', api);
+var users = require('./routes/users');
 app.use('/users', users);
 
 // catch 404 and forward to error handler
